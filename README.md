@@ -1,1 +1,1 @@
-#This is my final project for "Компьютерная Академия ШАГ"
+# This is my final project for "Компьютерная Академия ШАГ"

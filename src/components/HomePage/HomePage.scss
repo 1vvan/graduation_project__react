@@ -30,7 +30,7 @@
 .view-all-button {
     width: 105px;
     height: 44px;
-    background: #F6F4FF;
+    background: #f4fff8;
     border-radius: 12px;
 
     display: flex;
@@ -41,21 +41,17 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-    color: #5243C2;
+    color: #49c243;
     transition: all .2s ease 0s;
     &:hover{
-        background-color: #e3e1e9;
+        background-color: #e2e9e1;
         transition: all .2s ease 0s;
     }
-}
-
-.dark-btn {
-    transition: all .2s ease 0s;
-    &:hover{
-       background-color: #5744b1;
-        transition: all .2s ease 0s; 
+    & img{
+        width: 20px;
+        height: 20px;
     }
-}
+} 
 
 .card-image {
     border-radius: 25px;
@@ -170,11 +166,16 @@
             .top-info__button {
                 width: 60px;
                 height: 60px;
-                background: #7B61FF;
+                background: #26bd20;
                 border-radius: 12px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                transition: all .2s ease 0s;
+                &:hover{
+                    background-color: #155b00;
+                    transition: all .2s ease 0s; 
+                }
                 @media (max-width: 767px) {
                     & {
                         width: 100%;
@@ -456,19 +457,25 @@
             .about-us_button {
                 font-size: 16px;
                 line-height: 150%;
-                color: #5243C2;
-
+                color: #49c243;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding: 10px;
                 gap: 4px;
-
                 width: 133px;
                 height: 44px;
-
-                background: #F6F4FF;
+                background: #f4fff8;
                 border-radius: 12px;
+                transition: all .2s ease 0s;
+                &:hover{
+                    background-color: #e2e9e1;
+                    transition: all .2s ease 0s;
+                }
+                & img{
+                    width: 20px;
+                    height: 20px;
+                }
             }
         }
     }

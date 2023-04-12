@@ -92,6 +92,12 @@
         width: 24.752475%;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        @media (max-width: 767px){
+            &{
+                width: 60vw;
+            }
+        }
     }
     .down-info__title {
         font-weight: 500;
@@ -99,43 +105,16 @@
         line-height: 150%;
         margin: 0px 0px 20px 0px;
         text-align: center;
-        @media (max-width: 767px) {
-            & {
-                cursor: pointer;
-                position: relative;
+        @media (max-width: 767px){
+            &{
+                margin: 7vw 0px 4vw 0px;
             }
-            &::after,
-            &::before {
-                content: '';
-                width: 10px;
-                height: 2px;
-                background-color: #000;
-                position: absolute;
-                top: 12px;
-                right: -14%;
-            }
-            &::after {
-                transform: rotate(45deg);
-            }
-            &::before {
-                transform: rotate(-45deg);
-                right: -20%;
-            }
-            
         }
     }
     .down-info__links {
         display: flex;
         flex-direction: column;
         align-items: center;
-        @media (max-width: 767px){
-            & {
-                max-height: 0;
-                overflow: hidden;
-                transition: all .5s ease 0s;
-                margin: 0px 0px 20px 0px;
-            }
-        }
         .down-info__link {
             font-size: 13px;
             line-height: 153%;
@@ -159,6 +138,11 @@
     @media (max-width: 992px) {
         & {
             width: 100%;
+        }
+    }
+    @media (max-width: 767px){
+        &{
+            margin: 8vw 0px 0px 0px;
         }
     }
     &__title {
@@ -207,14 +191,19 @@
             
         }
         .footer-form__button {
+            cursor: pointer;
             height: 72px;
             width: 18.556701%;
-            background-color: #7B61FF;
+            background-color: #26bd20;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all .2s ease 0s;
+            &:hover {
+                background-color: #155b00;
+                transition: all .2s ease 0s;
+            }
             @media (max-width: 992px) {
                 & {
                     height: 50px;

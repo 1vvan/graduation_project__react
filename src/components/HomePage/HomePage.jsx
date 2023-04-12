@@ -7,7 +7,7 @@ import Calendar from '../../assets/images/top-block/icons/calendar.svg'
 import User from '../../assets/images/top-block/icons/user.svg'
 import MagnifyingGlass from '../../assets/images/top-block/icons/magnifying-glass.svg'
 import TopImage from '../../assets/images/top-block/top-block.png'
-import PurpleArrow from '../../assets/icons/purple-arrow.svg'
+import GreenArrow from '../../assets/icons/green-arrow.png'
 import MapPointHotels from '../../assets/images/hotels/icons/map-point.svg'
 import TipsCalendar from '../../assets/images/tips/icons/calendar.svg'
 import TipsComm from '../../assets/images/tips/icons/comm.svg'
@@ -84,7 +84,7 @@ const HomePage = () => {
                         <div className="destinations__title">
                             <h2>Popular Destinations</h2>
                             <a href="/" className="destination-view-all-button view-all-button">
-                                <span>View All</span><img src={PurpleArrow} alt=""/>
+                                <span>View All</span><img src={GreenArrow} alt=""/>
                             </a>
                         </div>
                         <div className="destinations__list">
@@ -101,7 +101,7 @@ const HomePage = () => {
                         <div className="hotels__title">
                             <h2>Hotels and Restaurants</h2>
                             <a href="/" className="hotels-view-all-button view-all-button">
-                                <span>View All</span><img src={PurpleArrow} alt=""/>
+                                <span>View All</span><img src={GreenArrow} alt=""/>
                             </a>
                         </div>
                         <div className="hotels__list">
@@ -122,7 +122,7 @@ const HomePage = () => {
                         <div className="tips__title">
                             <h2>Travel Tips and Advice</h2>
                             <a href="/" className="tips-view-all-button view-all-button">
-                                <span>View All</span><img src={PurpleArrow} alt=""/>
+                                <span>View All</span><img src={GreenArrow} alt=""/>
                             </a>
                         </div>
                         <div className="tips__list">
@@ -147,7 +147,7 @@ const HomePage = () => {
                         <div className="activities__title">
                             <h2>Activities</h2>
                             <a href="/" className="activities-view-all-button view-all-button">
-                                <span>View All</span><img src={PurpleArrow} alt=""/>
+                                <span>View All</span><img src={GreenArrow} alt=""/>
                             </a>
                         </div>
                         <div className="activities__list">
@@ -166,7 +166,7 @@ const HomePage = () => {
                             accommodation, and transportation. Our team consists of experienced travel experts who are ready to help you at any time
                             to make your trip comfortable, safe, and unforgettable.</div>
                             <a href="/" className="about-us_button">
-                                <span>Read More</span><img src={PurpleArrow} alt=""/>
+                                <span>Read More</span><img src={GreenArrow} alt=""/>
                             </a>
                         </div>
                         <div className="about-us__image">

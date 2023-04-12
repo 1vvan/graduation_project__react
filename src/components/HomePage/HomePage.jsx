@@ -6,7 +6,8 @@ import Bike from '../../assets/images/top-block/icons/bike.svg'
 import Calendar from '../../assets/images/top-block/icons/calendar.svg'
 import User from '../../assets/images/top-block/icons/user.svg'
 import MagnifyingGlass from '../../assets/images/top-block/icons/magnifying-glass.svg'
-import TopImage from '../../assets/images/top-block/top-block.png'
+// import TopImage from '../../assets/images/top-block/top-block.png'
+import TopVideo from '../../assets/videos/top-block.mp4'
 import GreenArrow from '../../assets/icons/green-arrow.png'
 import MapPointHotels from '../../assets/images/hotels/icons/map-point.svg'
 import TipsCalendar from '../../assets/images/tips/icons/calendar.svg'
@@ -75,8 +76,8 @@ const HomePage = () => {
                             </form>
                         </div>
                     </div>
-                    <div className="top-block__background _ibg">
-                        <img src={TopImage} alt="cover"/>
+                    <div className="top-block__background">
+                        <video src={TopVideo} autoPlay loop muted></video>
                     </div>
                 </div>
                 <div className="main__destinations destinations">

@@ -15,18 +15,6 @@
     box-sizing: content-box;
 }
 
-._ibg {
-    position: relative;
-    & img{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        object-fit: cover;
-    }
-}
-
 .view-all-button {
     width: 105px;
     height: 44px;
@@ -51,9 +39,21 @@
         width: 20px;
         height: 20px;
     }
+    @media (max-width: 767px){
+        &{
+            width: 44px;
+            height: 44px;
+            margin: 0px 0px 0px 20px;
+        }
+        
+        & span{
+            display: none;
+        }
+    }
 } 
-
 .card-image {
+    width: 100%;
+    height: 15vw;
     border-radius: 25px;
     box-shadow: 0px 0px 10px #717171;
 }
@@ -82,31 +82,45 @@
         left: 0;
         object-fit: cover;
         overflow: hidden;
-        border-radius: 0px 0px 54px 54px;
+        border-radius: 0px 0px 2vw 2vw;
         & video{
             width: 100vw;
         }
+    }
+    @media (max-width: 767px){
+        margin: 0px 0px 70vw 0px;
+    }
+    @media (max-width: 600px){
+        margin: 0px 0px 70vw 0px;
+    }
+    @media (max-width: 361px){
+        margin: 0px 0px 80vw 0px;
     }
     &__body{
         max-width: 1140px;
         margin: 0 auto;
         text-align: center;
-        padding: 15vw 0px 5vw 0px;
+        padding: 23vw 0px 23vw 0px;
         position: relative;
         z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         .top-block__title {
             font-weight: 600;
             font-size: 3vw;
             line-height: 130%;
-            margin: 0px 0px 20vw 0px;
             @media (max-width: 767px){
                 &{
                     font-size: 5vw;
-                    margin: 15vw 0px 25vw 0px;
                 }
             }
         }
         .top-info {
+            position: absolute;
+            bottom: 2vw;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
             padding: 8px;
             background-color: #fff;
@@ -120,17 +134,35 @@
                     align-items: flex-start;
                     gap: 5vw;
                     width: 50vw;
-                    margin: 0 auto;
+                    margin: 0 auto 0 auto;
+                    bottom: -65vw;
+                    box-shadow: 0px 0px 10px #717171;
                 }
             }
+            @media (max-width: 600px){
+                bottom: -70vw;
+            }
+            @media (max-width: 361px){
+                bottom: -90vw;
+            }
             &__item{
+                width: 17vw;
                 display: flex;
                 align-items: center;
                 gap: 0.7vw;
                 padding: 16px 20px 16px 16px;
+                & img{
+                    width: 24px;
+                    height: 24px;
+                }
                 @media (max-width: 992px){
                     &{
                        padding: 0px 5px 0px 10px; 
+                    }
+                }
+                @media (max-width: 767px){
+                    &{
+                        width: 100%;
                     }
                 }
                 .top-info__content {
@@ -138,6 +170,11 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-start;
+                    @media (max-width: 767px){
+                        &{
+                            margin: 0px 0px 0px 1vw;
+                        }
+                    }
                 }
                 .top-info__title {
                     color: #5B5B5B;
@@ -145,12 +182,30 @@
                     font-size: 0.7vw;
                     line-height: 115%;
                 }
-                .top-info__select {
-                    color: #161414;
-                    font-weight: 500;
-                    font-size: 0.9vw;
-                    line-height: 150%;
+                .css-b62m3t-container{
+                    width: 100%;
                 }
+                .css-18gh46y-singleValue{
+                    font-size: 1vw;
+                }
+                .css-1nmdiq5-menu{
+                    font-size: 0.7vw;
+                }
+                .react-datepicker__input-container{
+                    height: 38px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                @media (max-width: 767px){
+                    .css-18gh46y-singleValue{
+                        font-size: 2vw;
+                    }
+                    .css-1nmdiq5-menu{
+                        font-size: 2vw;
+                    }
+                }
+
                 @media (max-width: 1100px){
                     .top-info__title{
                         font-size: 1.3vw;
@@ -169,6 +224,7 @@
                 }
             }
             .top-info__button {
+                cursor: pointer;
                 width: 60px;
                 height: 60px;
                 background: #26bd20;
@@ -180,6 +236,10 @@
                 &:hover{
                     background-color: #155b00;
                     transition: all .2s ease 0s; 
+                }
+                & img{
+                    width: 24px;
+                    height: 24px;
                 }
                 @media (max-width: 767px) {
                     & {
@@ -196,7 +256,7 @@
     }
 }
 
-/*-----DESTINATION-BLOCK----------------------------------------------------------------------------------------------------*/
+/*-----DESTINATIONS-BLOCK----------------------------------------------------------------------------------------------------*/
 
 .destinations {
     padding: 60px 0px;
@@ -209,6 +269,8 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
     }
     &__list {
         display: flex;
@@ -255,6 +317,7 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
     &__list {
         display: flex;
@@ -267,6 +330,56 @@
             }
         }
         .hotels__item{
+            width: 17vw;
+            &_photo{
+                position: relative;
+                object-fit: cover;
+                border-radius: 25px;
+                & .booking {
+                    border-radius: 25px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 3;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.7);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in-out;
+                    & p {
+                        line-height: 30px;
+                        color: #fff;
+                        font-size: 24px;
+                        text-align: center;
+                    }
+                }
+                &:hover .booking {
+                    opacity: 1;
+                }
+                & img{
+                    object-fit: cover;
+                }
+                .hotels__item_mark{
+                    position: absolute;
+                    z-index: 2;
+                    top: 1vw;
+                    right: 1vw;
+                    width: 2.2vw;
+                    height: 2.2vw;
+                    background-color: rgb(0, 0, 150);
+                    border-radius: 30%;
+                    box-shadow: 0px 0px 10px #000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+            &_text{
+                padding: 0px 0px 0px 0.3vw;
+            }
             &_title {
                 font-weight: 500;
                 font-size: 16px;
@@ -281,100 +394,13 @@
                 color: #979797;
             }
 
-            &_text {
+            &_location {
                 display: flex;
                 gap: 5px;
                 width: 70%;
-            }
-        }
-    }
-}
-
-/*-----TIPS-BLOCK----------------------------------------------------------------------------------------------------*/
-
-.tips {
-    padding: 60px 0px;
-    &__title {
-        font-weight: 600;
-        font-size: 32px;
-        line-height: 150%;
-        color: #161414;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-    &__list {
-        display: flex;
-        gap: 32px;
-        margin: 64px 0px 0px 0px;
-        @media (max-width: 767px) {
-            & {
-                margin: 24px 0px 0px 0px;
-            }
-        }
-        .tips__item {
-            display: flex;
-            gap: 32px;
-            @media (max-width: 992px) {
-                &:not(:last-child) {
-                    display: none;
-                }
-
-            }
-            @media (max-width: 767px) {
-                & {
-                    position: relative;
-                    height: 470px;
-                }
-                & img:not(:last-child) {
-                    opacity: 0.3;
-                    position: absolute;
-                    width: 100%;
-                }
-            }
-            .tips__content {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                @media (max-width: 767px) {
-                    & {
-                        padding: 20px;
-                        position: relative;
-                        z-index: 2;
-                    }
-                }
-                &_title {
-                    font-weight: 600;
-                    font-size: 20px;
-                    line-height: 150%;
-                    color: #161414;
-                }
-                &_text {
-                    font-size: 16px;
-                    line-height: 200%;
-                    color: #5B5B5B;
-                    margin: 15px 0px 0px 0px;
-                    @media (max-width: 767px) {
-                        & {
-                            color: #161414;
-                        }
-                    }
-                }
-                &_info {
-                    font-size: 12px;
-                    line-height: 150%;
-                    color: #878787;
-                    display: flex;
-                    gap: 24px;
-                    & span{
-                        display: flex;
-                        gap: 4px;
-                    }
-                    @media (max-width: 767px) {
-                        & {
-                            color: #161414;
-                        }
-                    }
+                & img{
+                    width: 24px;
+                    height: 24px;
                 }
             }
         }
@@ -398,6 +424,7 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
     &__list {
         display: flex;

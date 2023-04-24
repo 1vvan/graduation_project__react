@@ -67,9 +67,10 @@
 /* ---FOOTER-MAIN--------------------- */
 
 .down-info {
-    width: 36.754003%;
+    width: 36%;
     display: flex;
-    gap: 64px;
+    gap: 2vw;
+    justify-content: center;
     @media (max-width: 992px) {
         & {
             width: 100%;
@@ -119,8 +120,14 @@
             font-size: 13px;
             line-height: 153%;
             color: #5B5B5B;
+            transition: all .3s ease 0s;
             &:not(:last-child) {
                 margin: 0px 0px 12px 0px;
+            }
+            &:hover{
+                color: #464646;
+                text-decoration: underline;
+                transition: all .3s ease 0s;
             }
             @media (max-width: 767px) {
                 & {
@@ -162,44 +169,20 @@
         }
     }
     &__fill {
-        display: flex;
-        gap: 16px;
-        &_form {
-            height: 72px;
-            width: 81.443299%;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 16px;
-            @media (max-width: 992px) {
-                & {
-                    height: 50px;
-                    width: 90%;
-                }
-            }
-            @media (max-width: 772px) {
-                & {
-                    width: 85%;
-                }
-            }
-            .footer-form__input {
-                height: 100%;
-                width: 100%;
-            }
-            
-        }
         .footer-form__button {
             cursor: pointer;
             height: 72px;
-            width: 18.556701%;
+            width: 100%;
             background-color: #26bd20;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 1vw;
             transition: all .2s ease 0s;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1vw;
             &:hover {
                 background-color: #155b00;
                 transition: all .2s ease 0s;
@@ -207,12 +190,8 @@
             @media (max-width: 992px) {
                 & {
                     height: 50px;
-                    width: 10%;
-                }
-            }
-            @media (max-width: 772px) {
-                & {
-                    width: 15%;
+                    width: 100%;
+                    font-size: 3vw;
                 }
             }
         }

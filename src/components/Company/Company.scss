@@ -1,0 +1,77 @@
+.company__top-block{
+    margin: 0;
+}
+
+.company__title{
+    text-shadow: 0px 0px 3px #000;
+    position: relative;
+        &::before {
+            width: 20px;
+            height: 20px;
+            background: url('../../assets/icons/logo.png') 0 0/cover no-repeat;
+            position: absolute;
+            top: -3px;
+            right: -20px;
+            content: "";
+        }
+}
+.company{
+    &__container{
+        padding: 2vw 15px;
+        color: #000;
+        .company__block-item{
+            padding: 4vw 0px;
+        }
+        .company__block-content{
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .company__block-content_title{
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 150%;
+            color: #161414;
+            width: 100%;
+        }
+        .company__block-content_subtitle{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 200%;
+            color: #5B5B5B;
+            margin: 32px 0px;
+        }
+        .company__block-content_image{
+            border-radius: 25px;
+            box-shadow: 0px 0px 10px #717171;
+            min-width: 40%;
+            height: 20vw;
+        }
+        .mission__image{
+            background: url('../../assets/images/company/mission_img.jpg') 0 0/cover no-repeat;
+        }
+        .team__image{
+            background: url('../../assets/images/company/team_img.jpg') 0 0/cover no-repeat;
+        }
+        .awards__image{
+            background: url('../../assets/images/company/awards_img.jpg') 0 0/cover no-repeat;
+        }
+        .awards__subtitle li{
+            list-style: disc;
+        }
+        .review__content{
+            flex-direction: column;
+            align-items: center;
+            .review__title{
+                width: 50%;
+            }
+            .review__form{
+                width: 50%;
+                & button{
+                    width: 100%;
+                    margin: 20px 0px 0px 0px;
+                }
+            }
+        }
+    }
+}

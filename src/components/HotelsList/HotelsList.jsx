@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MapPointHotels from '../../assets/images/hotels/icons/map-point.png'
 import Select from 'react-select';
-import MapPoint from '../../assets/images/top-block/icons/map-point.svg'
+import MapPoint from '../../assets/images/top-block/icons/map-point.png'
 import SortIcon from '../../assets/icons/sort.png'
 import ReloadIcon from '../../assets/icons/reload.png'
 import CheckIcon from '../../assets/icons/check.png'

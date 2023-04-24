@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import MapPoint from '../../assets/images/top-block/icons/map-point.svg'
+import MapPoint from '../../assets/images/top-block/icons/map-point.png'
 import PriceIcon from '../../assets/images/top-block/icons/price-icon.png'
-import User from '../../assets/images/top-block/icons/user.svg'
+import User from '../../assets/images/top-block/icons/user.png'
 import MagnifyingGlass from '../../assets/images/top-block/icons/magnifying-glass.svg'
 import TopVideo from '../../assets/videos/top-block.mp4'
 import GreenArrow from '../../assets/icons/green-arrow.png'
@@ -14,6 +14,9 @@ import 'rc-slider/assets/index.css';
 import Header from '../PageHeader/Header';
 import Footer from '../PageFooter/Footer';
 import { Link } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
+import FullStar from '../../assets/icons/stars/full-star.png'
+import EmptyStar from '../../assets/icons/stars/empty-star.png'
 import './HomePage.scss'
 
 
@@ -84,12 +87,20 @@ const HomePage = () => {
         .catch(error => console.error(error));
     }, []);
 
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+    fetch('http://localhost:8888/graduation/Reviews/getReviews.php')
+      .then(response => response.json())
+      .then(data => setReviews(data))
+        .catch(error => console.error(error));
+    }, []);
+
 
     const handlePriceRangeChange = (value) => {
         localStorage.setItem('tourSelectedPriceRange', value)
     };
     const handleCountrySelectChange = (value) => {
-        localStorage.setItem('tourSelectedCountrySelect', value.value)
+        localStorage.setItem('tourSelectedCountrySelect', value.label)
     };
     const handleGuestSelectChange = (value) => {
         localStorage.setItem('tourSelectedGuestSelect', value.value)
@@ -103,6 +114,23 @@ const HomePage = () => {
         5000: '5000$',
         6000: '6000$',
     };
+
+    function getReviewStars(mark) {
+        const fullStars = Math.floor(mark);
+        const hasHalfStar = mark % 1 !== 0;
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        return (
+            <>
+                {[...Array(fullStars)].map((_, i) => (
+                    <img src={FullStar} alt='' key={`full-star-${i}`}/>
+                ))}
+                {hasHalfStar && <img src={FullStar} alt=''/>}
+                {[...Array(emptyStars)].map((_, i) => (
+                    <img src={EmptyStar} alt='' key={`empty-star-${i}`}/>
+                ))}
+            </>
+        );
+    }
 
     return (
         <>
@@ -130,7 +158,7 @@ const HomePage = () => {
                                                 min={0}
                                                 max={6000}
                                                 marks={priceMarks}
-                                                step={500}
+                                                step={250}
                                                 onChange={handlePriceRangeChange}
                                                 defaultValue={[1000, 2000]}
                                             />
@@ -144,31 +172,14 @@ const HomePage = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="top-info__button dark-btn">
+                                <Link to={'/tours'} className="top-info__button dark-btn">
                                     <img src={MagnifyingGlass} alt="search"/>
-                                </div>
+                                </Link>
                             </form>
                         </div>
                     </div>
                     <div className="top-block__background">
                         <video src={TopVideo} autoPlay playsInline loop muted></video>
-                    </div>
-                </div>
-                <div className="main__destinations destinations" data-aos="fade-right" data-aos-duration="1000">
-                    <div className="destinations__container _container">
-                        <div className="destinations__title">
-                            <h2>Popular Destinations</h2>
-                            <a href="/" className="destination-view-all-button view-all-button">
-                                <span>View All</span><img src={GreenArrow} alt=""/>
-                            </a>
-                        </div>
-                        <div className="destinations__list">
-                            <div className="destinations__item">
-                                <img className="card-image" src="./img/destination/destination_1.png" alt=""/>
-                                <div className="destinations__item_title">Big Sur</div>
-                                <div className="destinations__item_subtitle">California, USA</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div className="main__hotels hotels" data-aos="fade-left" data-aos-duration="1000">
@@ -255,6 +266,26 @@ const HomePage = () => {
                             to make your trip comfortable, safe, and unforgettable.</div>
                         </div>
                         <div className="about-us__image"></div>
+                    </div>
+                </div>
+                <div className="main__reviews reviews" data-aos="fade-right" data-aos-duration="1000">
+                    <div className="reviews__container _container">
+                        <h3 className="reviews__title">Reviews of our customers</h3>
+                        <div className="reviews__slider">
+                            <Carousel
+                                pause={'hover'}
+                            >
+                                {reviews.map((review) => (
+                                    <Carousel.Item key={review.id}>
+                                        <Carousel.Caption>
+                                            <h3 className='reviews__slider_author'>{review.name}</h3>
+                                            <p className='reviews__slider_message'>{review.message}</p>
+                                            <div className='reviews__slider_stars'>{getReviewStars(review.mark)}</div>
+                                        </Carousel.Caption>
+                                    </Carousel.Item>
+                                ))}
+                            </Carousel>
+                        </div>
                     </div>
                 </div>
             </main>

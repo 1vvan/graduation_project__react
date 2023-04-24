@@ -129,12 +129,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .top-info__list{
+                @media (max-width: 767px) {
+                    & {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 5vw;
+                        width: 100%;
+                    }
+                }
+            }
             @media (max-width: 767px) {
                 & {
+                    display: flex;
                     flex-direction: column;
-                    align-items: flex-start;
-                    gap: 5vw;
-                    width: 50vw;
                     margin: 0 auto 0 auto;
                     bottom: -65vw;
                     box-shadow: 0px 0px 10px #717171;
@@ -149,8 +158,13 @@
             &__item{
                 &.price-slider{
                     width: 26vw;
+                    min-height: 86px;
+                    & .top-info__title{
+                        margin: 0px 0px 18px 0px;
+                    }
                 }
                 width: 17vw;
+                height: 100%;
                 display: flex;
                 align-items: center;
                 gap: 0.7vw;
@@ -168,13 +182,15 @@
                     &{
                         width: 100%;
                     }
+                    &.price-slider{
+                        width: 95%;
+                    }
                 }
                 .top-info__content {
                     width: 100%;
                     text-align: left;
                     display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
                     @media (max-width: 767px){
                         &{
                             margin: 0px 0px 0px 1vw;
@@ -261,55 +277,6 @@
     }
 }
 
-/*-----DESTINATIONS-BLOCK----------------------------------------------------------------------------------------------------*/
-
-.destinations {
-    padding: 60px 0px;
-    margin: 60px 0px 0px 0px;
-    &__title {
-        font-weight: 600;
-        font-size: 32px;
-        line-height: 150%;
-        color: #161414;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-    }
-    &__list {
-        display: flex;
-        gap: 32px;
-        margin: 64px 0px 0px 0px;
-        @media (max-width: 992px) {
-            & {
-                margin: 24px 0px 0px 0px;
-                justify-content: space-between;
-                gap: none;
-            }
-        }
-        @media (max-width: 772px) {
-            & {
-                justify-content: center;
-                gap: 5px;
-            }
-        }
-        .destinations__item{
-            &_title {
-                font-weight: 500;
-                font-size: 16px;
-                line-height: 150%;
-                color: #161414;
-                margin: 8px 0px 0px 0px;
-            }
-            &_subtitle {
-                font-size: 13px;
-                line-height: 150%;
-                color: #979797;
-            }
-        }
-    }
-}
 /*-----HOTELS-BLOCK----------------------------------------------------------------------------------------------------*/
 
 .hotels {
@@ -330,12 +297,21 @@
         margin: 64px 0px 0px 0px;
         @media (max-width: 992px) {
             & {
-                margin: 24px 0px 0px 0px;
+                display: grid;
                 justify-content: center;
+                grid-template-columns: 1fr 1fr;
+                gap: 2vw;
+                margin: 24px 0px 0px 0px;
+
             }
         }
         .hotels__item {
             width: 17vw;
+            @media (max-width: 992px){
+                &{
+                    width: 100%;
+                }
+            }
 
             &_photo {
                 position: relative;
@@ -638,4 +614,54 @@
             }
         }
     }
+}
+
+
+/*-----REVIEWS-BLOCK----------------------------------------------------------------------------------------------------*/
+
+
+.reviews {
+    padding: 60px 0px;
+    margin: 0px 0px 60px 0px;
+
+    &__container {
+        max-width: 1144px;
+        .reviews__title {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 150%;
+            color: #161414;
+            margin: 0px 0px 2vw 0px;
+        }
+        .carousel{
+            border-radius: 25px;
+            box-shadow: 0px 0px 10px #000;
+            overflow: hidden;
+        }
+        .carousel-item,
+        .carousel-item .active{
+            width: 100%;
+            height: 20vw;
+            background: url('../../assets/images/reviews_img.jpg') 0 -100px/cover no-repeat;
+            .carousel-caption{
+                padding: 4vw 0px 3vw 0px;
+            }
+            .reviews__slider_author{
+                font-size: 1.7vw;
+                text-shadow: 0px 0px 5px #000;
+                margin: 0px 0px 1vw 0px;
+            }
+            .reviews__slider_message{
+                font-size: 1vw;
+                text-shadow: 0px 0px 5px #000;
+            }
+            .reviews__slider_stars{
+                & img{
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+    }
+    
 }

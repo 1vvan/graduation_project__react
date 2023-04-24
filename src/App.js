@@ -3,6 +3,7 @@ import './App.scss';
 import HomePage from './components/HomePage/HomePage';
 import HotelsList from './components/HotelsList/HotelsList';
 import ToursList from './components/ToursList/ToursList';
+import Company from './components/Company/Company';
 import AdminPanel from './components/AdminPanel/AdminPanel';
 import LoginAdmin from './components/AdminPanel/LoginAdmin/LoginAdmin';
 
@@ -15,6 +16,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/hotels' element={<HotelsList />} />
           <Route path='/tours' element={<ToursList />} />
+          <Route path='/company' element={<Company />} />
           <Route path='/admin' element={<LoginAdmin />} />
           <Route path={isAdmin ? '/admin/panel' : '/admin'} element={<AdminPanel />} />
           <Route path='*' element={

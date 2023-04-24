@@ -16,133 +16,165 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        .tours-block__list {
+        .tours-block__list,
+        .searched-tours__list {
             display: grid;
             justify-content: space-between;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 4vw;
-            .tours__item {
-                width: 15vw;
-                position: relative;
-                &_photo {
-                    position: relative;
-                    & .booking {
-                        border-radius: 25px;
-                        position: absolute;
-                        z-index: 3;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: rgba(0, 0, 0, 0.7);
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        opacity: 0;
-                        transition: opacity 0.3s ease-in-out;
-                        & p {
-                            line-height: 30px;
-                            color: #fff;
-                            font-size: 24px;
-                            text-align: center;
-                        }
-                    }
-                    &:hover .booking {
-                        opacity: 1;
-                    }
-                    & .total-price{
-                        position: absolute;
-                        z-index: 3;
-                        top: -22%;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 100%;
-                        height: 15%;
-                        background-color: rgba(0, 0, 0, 0.7);
-                        border-radius: 25px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        opacity: 0;
-                        transition: opacity 0.3s ease-in-out;
-                        & span {
-                            line-height: 30px;
-                            color: #fff;
-                            font-size: 14px;
-                            text-align: center;
-                        }
-                        &_text span{
-                            color: rgb(255, 0, 0);
-                        }
-                        & img{
-                            width: 24px;
-                            height: 24px;
-                            position: absolute;
-                            bottom: -60%;
-                            left: 50%;
-                            transform: translateX(-50%);
-                        }
-                    }
-                    &:hover .total-price {
-                        opacity: 1;
-                    }
-                    & img {
-                        width: 100%;
-                        object-fit: cover;
-                    }
-                    .tours__item_price {
-                        position: absolute;
-                        z-index: 2;
-                        top: 0.7vw;
-                        right: 0.7vw;
-                        width: 6vw;
-                        height: 2.2vw;
-                        background-color: rgb(150, 0, 0);
-                        border-radius: 10px;
-                        box-shadow: 0px 0px 10px #000;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+            padding: 4vw 0px;
+        }
+        .tours-block__title{
+            font-size: 2vw;
+            color: #000;
+            & span{
+                text-align: center;
+                line-height: 30px;
+                & a{
+                    color: rgb(0, 108, 0);
+                    transition: all .3s ease 0s;
+                    &:hover{
+                        color: rgb(0, 168, 0);
+                        text-decoration: underline;
+                        transition: all .3s ease 0s;
                     }
                 }
+            }
+        }
+    }
+}
+.tours__item {
+    width: 15vw;
+    position: relative;
 
-                &_text {
-                    padding: 0px 0px 0px 0.3vw;
-                }
+    &_photo {
+        position: relative;
 
-                &_title {
-                    font-weight: 500;
-                    font-size: 16px;
-                    line-height: 150%;
-                    color: #161414;
-                    margin: 8px 0px 0px 0px;
+        & .booking {
+            border-radius: 25px;
+            position: absolute;
+            z-index: 3;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
 
-                    min-height: 50px;
-                }
+            & p {
+                line-height: 30px;
+                color: #fff;
+                font-size: 24px;
+                text-align: center;
+            }
+        }
 
-                &_subtitle {
-                    font-size: 13px;
-                    line-height: 150%;
-                    color: #979797;
-                }
+        &:hover .booking {
+            opacity: 1;
+        }
 
-                &_location {
-                    width: 100%;
-                    margin: 5px 0px 0px 0px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    gap: 0.5vw;
-                    &-item{
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        & img{
-                            width: 24px;
-                            height: 24px;
-                        }
-                    }
-                }
+        & .total-price {
+            position: absolute;
+            z-index: 3;
+            top: -22%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 15%;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+
+            & span {
+                line-height: 30px;
+                color: #fff;
+                font-size: 14px;
+                text-align: center;
+            }
+
+            &_text span {
+                color: rgb(255, 0, 0);
+            }
+
+            & img {
+                width: 24px;
+                height: 24px;
+                position: absolute;
+                bottom: -60%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &:hover .total-price {
+            opacity: 1;
+        }
+
+        & img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .tours__item_price {
+            position: absolute;
+            z-index: 2;
+            top: 0.7vw;
+            right: 0.7vw;
+            width: 6vw;
+            height: 2.2vw;
+            background-color: rgb(150, 0, 0);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &_text {
+        padding: 0px 0px 0px 0.3vw;
+    }
+
+    &_title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 150%;
+        color: #161414;
+        margin: 8px 0px 0px 0px;
+
+        min-height: 50px;
+    }
+
+    &_subtitle {
+        font-size: 13px;
+        line-height: 150%;
+        color: #979797;
+    }
+
+    &_location {
+        width: 100%;
+        margin: 5px 0px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5vw;
+
+        &-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            & img {
+                width: 24px;
+                height: 24px;
             }
         }
     }

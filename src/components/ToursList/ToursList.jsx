@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MapPointCard from '../../assets/images/hotels/icons/map-point.png'
 import Pin from '../../assets/icons/pin.png'
 import Select from 'react-select';
-import MapPoint from '../../assets/images/top-block/icons/map-point.svg'
+import MapPoint from '../../assets/images/top-block/icons/map-point.png'
 import SortIcon from '../../assets/icons/sort.png'
 import PeopleIcon from '../../assets/icons/people.png'
 import ReloadIcon from '../../assets/icons/reload.png'
@@ -17,6 +17,11 @@ import './ToursList.scss'
 
 const ToursList = () => {
 
+    const [currentPage, setCurrentPage] = useState('tours');
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+    
     const [tours, setTours] = useState([]);
     useEffect(() => {
         fetch('http://localhost:8888/graduation/Tours/getTours.php')
@@ -25,10 +30,6 @@ const ToursList = () => {
             .catch(error => console.error(error));
     }, []);
 
-    const [currentPage, setCurrentPage] = useState('tours');
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
 
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [selectedSortType, setSelectedSortType] = useState(null);
@@ -168,6 +169,37 @@ const ToursList = () => {
         }
     };
 
+
+    const selectedFilteredOnMainGuests = localStorage.getItem('tourSelectedGuestSelect');
+    const selectedFilteredOnMainPriceRange = localStorage.getItem('tourSelectedPriceRange');
+    const selectedFilteredOnMainCountry = localStorage.getItem('tourSelectedCountrySelect');
+    const [filteredOnMainTours, setFilteredOnMainTours] = useState([]);
+
+    // Filter tours based on selected filters
+    useEffect(() => {
+        const filterToursFromMainPageForm = () => {
+            const filteredTours = tours.filter(tour => {
+                if (selectedFilteredOnMainPriceRange) {
+                    const [minPrice, maxPrice] = selectedFilteredOnMainPriceRange.split(',');
+                    if (tour.price < parseInt(minPrice) || tour.price > parseInt(maxPrice)) {
+                        return false;
+                    }
+                }
+                if (selectedFilteredOnMainCountry && tour.countryFrom !== selectedFilteredOnMainCountry) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+            setFilteredOnMainTours(filteredTours);
+        }
+        filterToursFromMainPageForm();
+    }, [selectedFilteredOnMainPriceRange, selectedFilteredOnMainCountry, tours]);
+    
+
+        
+
     return (
         <>
             <ToastContainer
@@ -224,6 +256,55 @@ const ToursList = () => {
                 </div>
             <div className='tours-block'>
                 <div className="tours-block__container _container">
+                    {selectedFilteredOnMainGuests || selectedFilteredOnMainPriceRange || selectedFilteredOnMainCountry ? (
+                        <div className="tours-block__title" data-aos="fade-up" data-aos-duration="1000">
+                            {filteredOnMainTours.length > 0 ? (
+                                <span>Tours for filters you have chosen</span>
+                            ) : (
+                                <span>
+                                    <p style={{ color: 'rgb(149, 0, 0)', fontWeight: '700' }}>There are no tours found at this request</p>
+                                    <p style={{ color: 'rgb(149, 0, 0)', fontWeight: '700'}}>Please return to the <a href="/">Home Page</a> and enter another search request</p>
+                                </span>
+                            )}
+                            
+                        </div>
+                    ):('')}
+                    {selectedFilteredOnMainGuests || selectedFilteredOnMainPriceRange || selectedFilteredOnMainCountry ? (
+                        <div className="searched-tours__list">
+                            {filteredOnMainTours.map(tour => (
+                                <div className="tours__item" key={tour.id} data-aos="fade-up" data-aos-duration="1000">
+                                    <div className="tours__item_photo">
+                                        <img className="card-image" src={tour.photo} alt="hotel" />
+                                        <a href={tour.link} rel="noreferrer" target='_blank' className="booking">
+                                            <p>Click to book tour ticket</p>
+                                        </a>
+                                        <div className="total-price">
+                                            <span className='total-price_text'>Total for {selectedFilteredOnMainGuests} person: <span>{(tour.price * selectedFilteredOnMainGuests).toFixed(2)}</span>$</span>
+                                            <img src={ArrowDown} alt="" />
+                                        </div>
+                                        <div className="tours__item_price">{tour.price}$</div>
+                                    </div>
+                                    <div className="tours__item_text">
+                                        <div className="tours__item_title">{tour.name}</div>
+                                        <div className="tours__item_subtitle">
+                                            <div className="tours__item_location">
+                                                <div className="tours__item_location-item">
+                                                    <img src={MapPointCard} alt="" />{tour.cityFrom}, {tour.countryFrom}
+                                                </div>
+                                                <div className="tours__item_location-item">
+                                                    <img src={Pin} alt="" />{tour.cityFrom}, {tour.countryFrom}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : ('')}
+                    
+                    <div className="tours-block__title" data-aos="fade-up" data-aos-duration="1000">
+                        Full list of tours
+                    </div>
                     <div className="tours-block__list">
                         {tours.map(tour => (
                             <div className="tours__item" key={tour.id} data-aos="fade-up" data-aos-duration="1000">

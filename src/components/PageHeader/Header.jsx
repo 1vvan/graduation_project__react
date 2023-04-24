@@ -34,7 +34,7 @@ const Header = ({currentPage, handlePageChange}) => {
                             <Link to={'/tours'} className={currentPage === 'tours' ? 'menu__link_active' : 'menu__link'} onClick={() => handlePageChange('tours')}>Tours</Link>
                         </li>
                         <li className="menu__item">
-                            <a href="/" className="menu__link">Destinations</a>
+                            <Link to={'/company'} className={currentPage === 'сompany' ? 'menu__link_active' : 'menu__link'} onClick={() => handlePageChange('company')}>Company</Link>
                         </li>
                     </ul>
                 </nav>

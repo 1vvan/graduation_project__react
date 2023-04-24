@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Header.scss'
 import { Link } from 'react-router-dom';
+import './Header.scss'
 
 const Header = ({currentPage, handlePageChange}) => {
     const [showBurger, setShowBurger] = useState(false);
@@ -35,9 +35,6 @@ const Header = ({currentPage, handlePageChange}) => {
                         </li>
                         <li className="menu__item">
                             <a href="/" className="menu__link">Destinations</a>
-                        </li>
-                        <li className="menu__item">
-                            <a href="/" className="menu__link">Activities</a>
                         </li>
                     </ul>
                 </nav>

@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import './HomePage.scss'
-import Header from '../PageHeader/Header';
 import Select from 'react-select';
 import MapPoint from '../../assets/images/top-block/icons/map-point.svg'
-import Bike from '../../assets/images/top-block/icons/bike.svg'
-import Calendar from '../../assets/images/top-block/icons/calendar.svg'
+import PriceIcon from '../../assets/images/top-block/icons/price-icon.png'
 import User from '../../assets/images/top-block/icons/user.svg'
 import MagnifyingGlass from '../../assets/images/top-block/icons/magnifying-glass.svg'
 import TopVideo from '../../assets/videos/top-block.mp4'
 import GreenArrow from '../../assets/icons/green-arrow.png'
 import MapPointHotels from '../../assets/images/hotels/icons/map-point.png'
+import MapPointCard from '../../assets/images/hotels/icons/map-point.png'
+import Pin from '../../assets/icons/pin.png'
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import Header from '../PageHeader/Header';
 import Footer from '../PageFooter/Footer';
 import { Link } from 'react-router-dom';
+import './HomePage.scss'
 
 
 
 const HomePage = () => {
     const [currentPage, setCurrentPage] = useState('home');
-
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
@@ -27,15 +29,11 @@ const HomePage = () => {
         { value: 'ua', label: 'Ukraine' },
         { value: 'fr', label: 'France' }
     ];
-    const activityOption = [
-        { value: 'skiing', label: 'Skiing' },
-        { value: 'climbing', label: 'Climbing' },
-        { value: 'diving', label: 'Diving' }
-    ];
     const guestOption = [
         { value: '1', label: '1 guest' },
-        { value: '2-4', label: '2-4 guests' },
-        { value: '4+', label: '4+ guests' }
+        { value: '2', label: '2 guests' },
+        { value: '3', label: '3 guests' },
+        { value: '4', label: '4 guests' }
     ];
     const customStyles = {
         control: (provided) => ({
@@ -71,13 +69,41 @@ const HomePage = () => {
     };
 
     const [hotels, setHotels] = useState([]);
-    
     useEffect(() => {
-    fetch('http://localhost:8888/graduation/getHotels.php')
+    fetch('http://localhost:8888/graduation/Hotels/getHotels.php')
       .then(response => response.json())
       .then(data => setHotels(data))
         .catch(error => console.error(error));
     }, []);
+
+    const [tours, setTours] = useState([]);
+    useEffect(() => {
+    fetch('http://localhost:8888/graduation/Tours/getTours.php')
+      .then(response => response.json())
+      .then(data => setTours(data))
+        .catch(error => console.error(error));
+    }, []);
+
+
+    const handlePriceRangeChange = (value) => {
+        localStorage.setItem('tourSelectedPriceRange', value)
+    };
+    const handleCountrySelectChange = (value) => {
+        localStorage.setItem('tourSelectedCountrySelect', value.value)
+    };
+    const handleGuestSelectChange = (value) => {
+        localStorage.setItem('tourSelectedGuestSelect', value.value)
+    };
+    const priceMarks = {
+        0: '0$',
+        1000: '1000$',
+        2000: '2000$',
+        3000: '3000$',
+        4000: '4000$',
+        5000: '5000$',
+        6000: '6000$',
+    };
+
     return (
         <>
             <Header currentPage={currentPage} handlePageChange={handlePageChange}/>
@@ -87,31 +113,35 @@ const HomePage = () => {
                         <div className="top-block__body">
                             <h1 className="top-block__title" data-aos="zoom-in">Open new horizons</h1>
                             <form className="top-block__info top-info">
-                                <div className="top-info__item">
-                                    <a href="/"><img src={MapPoint} alt=""/></a>
-                                    <div className="top-info__content">
-                                        <label className="top-info__title">Location</label>
-                                        <Select options={locationOption} styles={customStyles} />
+                                <div className="top-info__list">
+                                    <div className="top-info__item">
+                                        <img src={MapPoint} alt=""/>
+                                        <div className="top-info__content">
+                                            <label className="top-info__title">Location</label>
+                                            <Select options={locationOption} styles={customStyles} onChange={handleCountrySelectChange}/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="top-info__item">
-                                    <a href="/"><img src={Bike}alt=""/></a>
-                                    <div className="top-info__content">
-                                        <h3 className="top-info__title">Activity</h3>
-                                        <Select options={activityOption} styles={customStyles} />
+                                    <div className="top-info__item price-slider">
+                                        <img src={PriceIcon} alt=""/>
+                                        <div className="top-info__content">
+                                            <h3 className="top-info__title">Price</h3>
+                                            <Slider
+                                                range
+                                                min={0}
+                                                max={6000}
+                                                marks={priceMarks}
+                                                step={500}
+                                                onChange={handlePriceRangeChange}
+                                                defaultValue={[1000, 2000]}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="top-info__item">
-                                    <a href="/"><img src={Calendar} alt=""/></a>
-                                    <div className="top-info__content">
-                                        <h3 className="top-info__title">When</h3>
-                                    </div>
-                                </div>
-                                <div className="top-info__item">
-                                    <a href="/"><img src={User} alt=""/></a>
-                                    <div className="top-info__content">
-                                        <h3 className="top-info__title">Guests</h3>
-                                        <Select options={guestOption} styles={customStyles} />
+                                    <div className="top-info__item">
+                                        <img src={User} alt=""/>
+                                        <div className="top-info__content">
+                                            <h3 className="top-info__title">Guests</h3>
+                                            <Select options={guestOption} styles={customStyles} onChange={handleGuestSelectChange}/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="top-info__button dark-btn">
@@ -176,19 +206,43 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="main__activities activities" data-aos="fade-right" data-aos-duration="1000">
-                    <div className="activities__container _container">
-                        <div className="activities__title">
-                            <h2>Activities</h2>
-                            <a href="/" className="activities-view-all-button view-all-button">
+                <div className="main__tours tours" data-aos="fade-right" data-aos-duration="1000">
+                    <div className="tours__container _container">
+                        <div className="tours__title">
+                            <h2>Best Tours</h2>
+                            <Link to={'/tours'} className="tours-view-all-button view-all-button">
                                 <span>View All</span><img src={GreenArrow} alt=""/>
-                            </a>
+                            </Link>
                         </div>
-                        <div className="activities__list">
-                            <div className="activities__item">
-                                <img className="card-image" src="./img/activities//activities_1.png" alt=""/>/
-                                <span>Sailing</span>
+                        <div className="tours__list">
+                            {tours.filter(tour => tour.price > 200)
+                                .sort((a, b) => b.price - a.price)
+                                .slice(0, 5)
+                                .map(tour => (
+                                    <div className="tours__item" key={tour.id} data-aos="fade-up" data-aos-duration="1000">
+                                <div className="tours__item_photo">
+                                    <img className="card-image" src={tour.photo} alt="hotel" />
+                                    <a href={tour.link} rel="noreferrer" target='_blank' className="booking">
+                                        <p>Click to book tour ticket</p>
+                                    </a>
+                                    <div className="tours__item_price">{tour.price}$</div>
+                                </div>
+                                <div className="tours__item_text">
+                                    <div className="tours__item_title">{tour.name}</div>
+                                    <div className="tours__item_subtitle">
+                                        <div className="tours__item_location">
+                                            <div className="tours__item_location-item">
+                                                <img src={MapPointCard} alt="" />{tour.cityFrom}, {tour.countryFrom}
+                                            </div>
+                                            <div className="tours__item_location-item">
+                                                <img src={Pin} alt="" />{tour.cityFrom}, {tour.countryFrom}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
@@ -200,8 +254,7 @@ const HomePage = () => {
                             accommodation, and transportation. Our team consists of experienced travel experts who are ready to help you at any time
                             to make your trip comfortable, safe, and unforgettable.</div>
                         </div>
-                        <div className="about-us__image">
-                        </div>
+                        <div className="about-us__image"></div>
                     </div>
                 </div>
             </main>

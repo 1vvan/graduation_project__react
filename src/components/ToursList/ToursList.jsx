@@ -9,17 +9,17 @@ import ReloadIcon from '../../assets/icons/reload.png'
 import CheckIcon from '../../assets/icons/check.png'
 import ToursBackground from '../../assets/videos/tours_bg.mp4'
 import ArrowDown from '../../assets/icons/arrow-down-sign-to-navigate.png'
-import Header from '../PageHeader/Header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './ToursList.scss'
+import Header from '../PageHeader/Header';
 import Footer from '../PageFooter/Footer';
+import './ToursList.scss'
 
 const ToursList = () => {
 
     const [tours, setTours] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:8888/graduation/getTours.php')
+        fetch('http://localhost:8888/graduation/Tours/getTours.php')
             .then(response => response.json())
             .then(data => setTours(data))
             .catch(error => console.error(error));
@@ -34,7 +34,7 @@ const ToursList = () => {
     const [selectedSortType, setSelectedSortType] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const handleReloadHotels = () => {
-        fetch('http://localhost:8888/graduation/getTours.php')
+        fetch('http://localhost:8888/graduation/Tours/getTours.php')
         .then(response => response.json())
         .then(data => setTours(data))
             .catch(error => console.error(error));
@@ -96,7 +96,7 @@ const ToursList = () => {
 
     const handleCountryChange = (selectedOption) => {
         setSelectedCountry(selectedOption)
-        fetch(`http://localhost:8888/graduation/getTours.php`)
+        fetch(`http://localhost:8888/graduation/Tours/getTours.php`)
         .then(response => response.json())
         .then(data => setTours((data.filter(hotel => hotel.countryFrom.includes(selectedOption.label)))))
         .catch(error => console.error(error));
@@ -228,7 +228,7 @@ const ToursList = () => {
                         {tours.map(tour => (
                             <div className="tours__item" key={tour.id} data-aos="fade-up" data-aos-duration="1000">
                                 <div className="tours__item_photo">
-                                    <img className="card-image" src={tour.image} alt="hotel" />
+                                    <img className="card-image" src={tour.photo} alt="hotel" />
                                     <a href={tour.link} rel="noreferrer" target='_blank' className="booking">
                                         <p>Click to book tour ticket</p>
                                     </a>

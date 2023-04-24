@@ -15,7 +15,7 @@ import './HotelsList.scss'
 const HotelsList = () => {
     const [hotels, setHotels] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:8888/graduation/getHotels.php')
+        fetch('http://localhost:8888/graduation/Hotels/getHotels.php')
             .then(response => response.json())
             .then(data => setHotels(data))
             .catch(error => console.error(error));
@@ -30,7 +30,7 @@ const HotelsList = () => {
     const [selectedSortType, setSelectedSortType] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const handleReloadHotels = () => {
-        fetch('http://localhost:8888/graduation/getHotels.php')
+        fetch('http://localhost:8888/graduation/Hotels/getHotels.php')
         .then(response => response.json())
         .then(data => setHotels(data))
             .catch(error => console.error(error));
@@ -86,7 +86,7 @@ const HotelsList = () => {
 
     const handleCountryChange = (selectedOption) => {
         setSelectedCountry(selectedOption)
-        fetch(`http://localhost:8888/graduation/getHotels.php`)
+        fetch(`http://localhost:8888/graduation/Hotels/getHotels.php`)
         .then(response => response.json())
         .then(data => setHotels((data.filter(hotel => hotel.country.includes(selectedOption.label)))))
         .catch(error => console.error(error));

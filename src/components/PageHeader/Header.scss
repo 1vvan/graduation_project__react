@@ -9,6 +9,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        & a{
+            &:hover{
+                color: #fff;
+            }
+        }
         .header__logo {
             font-size: 25px;
             font-weight: 600;

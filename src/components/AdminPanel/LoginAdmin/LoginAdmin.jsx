@@ -16,7 +16,6 @@ const LoginAdmin = ({setIsAuthenticated, isAuthenticated}) => {
             .then(response => response.json())
             .then(data => setDataPasswords(data))
             .catch(error => console.error(error));
-        console.log(dataPasswords);
     }, [dataPasswords]);
 
     const handleSubmit = (event) => {

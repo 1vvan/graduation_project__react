@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../PageHeader/Header';
 import CompanyBackground from '../../assets/videos/company_bg.mp4'
 import { ToastContainer, toast } from 'react-toastify';
-import { Button, Form } from 'react-bootstrap';
+import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import './Company.scss'
 import Footer from '../PageFooter/Footer';
 
@@ -96,19 +96,22 @@ const Company = () => {
                             <Form onSubmit={handleAddReview} className='review__form'>
                                 <Form.Group className='mb-2'>
                                     <Form.Label>Name:</Form.Label>
-                                    <Form.Control type="text" value={nameValue} onChange={(e)=>setNameValue(e.target.value)} name="name" placeholder='Enter review name'/>
+                                    <FloatingLabel label="Enter your name and surname">
+                                        <Form.Control type="text" value={nameValue} onChange={(e)=>setNameValue(e.target.value)} name="name" placeholder='Enter your name and surname' required/>
+                                    </FloatingLabel>
                                 </Form.Group>
-
                                 <Form.Group className='mb-2'>
                                     <Form.Label>Message:</Form.Label>
-                                    <Form.Control as={'textarea'} value={messageValue} onChange={(e)=>setMessageValue(e.target.value)} name="message" placeholder='Enter review message'/>
+                                    <FloatingLabel label="Enter review message">
+                                        <Form.Control as={'textarea'} value={messageValue} onChange={(e)=>setMessageValue(e.target.value)} name="message" placeholder='Enter review message' required/>
+                                    </FloatingLabel>
                                 </Form.Group>
-
-                                <Form.Group className='mb-2'>
+                                <Form.Group className='mb-2' controlId="numberInput">
                                     <Form.Label>Mark:</Form.Label>
-                                    <Form.Control type="number" value={markValue} onChange={(e)=>setMarkValue(e.target.value)} name="mark" placeholder='Enter review mark'/>
+                                    <FloatingLabel label="Enter review mark">
+                                        <Form.Control type="number" min="0" max="5" step="1" value={markValue} onChange={(e)=>setMarkValue(e.target.value)} name="mark" placeholder='Enter review mark' pattern="[0-5]" required/>
+                                    </FloatingLabel>
                                 </Form.Group>
-
                                 <Button style={{ width: '100%' }} variant="success" type="submit">
                                     Add review
                                 </Button>

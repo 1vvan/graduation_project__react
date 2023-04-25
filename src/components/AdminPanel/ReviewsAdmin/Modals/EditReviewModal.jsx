@@ -2,31 +2,31 @@ import React from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 
-const EditHotelModal = ({ setHotels, showModal, handleModalClose, currentHotel }) => {
+const EditReviewModal = ({ setReviews, showModal, handleModalClose, currentReview }) => {
 
     const handleEditSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
-        formData.append('id', currentHotel.id);
+        formData.append('id', currentReview.id);
 
-        fetch('http://localhost:8888/graduation/Hotels/updateHotel.php', {
+        fetch('http://localhost:8888/graduation/Reviews/updateReview.php', {
             method: 'POST',
             body: formData,
         })
             .then(response => response.json())
             .then(data => {
-            setHotels(prevHotels => {
-                const updatedHotels = prevHotels.map(hotel => {
-                if (hotel.id === currentHotel.id) {
+            setReviews(prevReviews => {
+                const updatedReviews = prevReviews.map(review => {
+                if (review.id === currentReview.id) {
                     return {
-                    ...hotel,
+                    ...review,
                     ...data,
                     };
                 }
-                return hotel;
+                return review;
                 });
-                return updatedHotels;
+                return updatedReviews;
             });
             // Закрываем модальное окно
                 handleModalClose();
@@ -48,34 +48,16 @@ const EditHotelModal = ({ setHotels, showModal, handleModalClose, currentHotel }
                     <Form onSubmit={handleEditSubmit}>
                         <Form.Group className='mb-2'>
                             <Form.Label>Name:</Form.Label>
-                            <Form.Control type="text" name="name" defaultValue={currentHotel.name}/>
+                            <Form.Control type="text" name="name" defaultValue={currentReview.name}/>
                         </Form.Group>
-
                         <Form.Group className='mb-2'>
-                            <Form.Label>Country:</Form.Label>
-                            <Form.Control type="text" name="country" defaultValue={currentHotel.country}/>
+                            <Form.Label>Message:</Form.Label>
+                            <Form.Control type="text" name="message" defaultValue={currentReview.message}/>
                         </Form.Group>
-
-                        <Form.Group className='mb-2'>
-                            <Form.Label>City:</Form.Label>
-                            <Form.Control type="text" name="city" defaultValue={currentHotel.city}/>
-                        </Form.Group>
-
-                        <Form.Group className='mb-2'>
-                            <Form.Label>Photo:</Form.Label>
-                            <Form.Control type="text" name="photo" defaultValue={currentHotel.photo}/>
-                        </Form.Group>
-
-                        <Form.Group className='mb-2'>
-                            <Form.Label>Link:</Form.Label>
-                            <Form.Control type="text" name="link" defaultValue={currentHotel.link}/>
-                        </Form.Group>
-
                         <Form.Group className='mb-2'>
                             <Form.Label>Mark:</Form.Label>
-                            <Form.Control type="text" name="mark" defaultValue={currentHotel.mark}/>
+                            <Form.Control type="text" name="mark" defaultValue={currentReview.mark}/>
                         </Form.Group>
-
                         <Button style={{width: '100%'}} variant="success" type="submit">
                             Save changes
                         </Button>
@@ -86,4 +68,4 @@ const EditHotelModal = ({ setHotels, showModal, handleModalClose, currentHotel }
     );
 }
 
-export default EditHotelModal;
+export default EditReviewModal;

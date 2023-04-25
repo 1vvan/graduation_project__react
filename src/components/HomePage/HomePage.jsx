@@ -21,7 +21,7 @@ import './HomePage.scss'
 
 
 
-const HomePage = () => {
+const HomePage = ({setTourSelectedPriceRange, setTourSelectedCountrySelect, setTourSelectedGuestSelect}) => {
     const [currentPage, setCurrentPage] = useState('home');
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -95,15 +95,15 @@ const HomePage = () => {
         .catch(error => console.error(error));
     }, []);
 
-
+    
     const handlePriceRangeChange = (value) => {
-        localStorage.setItem('tourSelectedPriceRange', value)
+        setTourSelectedPriceRange(value)
     };
     const handleCountrySelectChange = (value) => {
-        localStorage.setItem('tourSelectedCountrySelect', value.label)
+        setTourSelectedCountrySelect(value.label)
     };
     const handleGuestSelectChange = (value) => {
-        localStorage.setItem('tourSelectedGuestSelect', value.value)
+        setTourSelectedGuestSelect(value.value)
     };
     const priceMarks = {
         0: '0$',

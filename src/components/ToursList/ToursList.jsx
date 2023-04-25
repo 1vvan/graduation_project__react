@@ -15,7 +15,7 @@ import Header from '../PageHeader/Header';
 import Footer from '../PageFooter/Footer';
 import './ToursList.scss'
 
-const ToursList = () => {
+const ToursList = ({tourSelectedPriceRange, tourSelectedCountrySelect, tourSelectedGuestSelect}) => {
 
     const [currentPage, setCurrentPage] = useState('tours');
     const handlePageChange = (page) => {
@@ -170,9 +170,9 @@ const ToursList = () => {
     };
 
 
-    const selectedFilteredOnMainGuests = localStorage.getItem('tourSelectedGuestSelect');
-    const selectedFilteredOnMainPriceRange = localStorage.getItem('tourSelectedPriceRange');
-    const selectedFilteredOnMainCountry = localStorage.getItem('tourSelectedCountrySelect');
+    const selectedFilteredOnMainGuests = tourSelectedGuestSelect;
+    const selectedFilteredOnMainPriceRange = tourSelectedPriceRange;
+    const selectedFilteredOnMainCountry = tourSelectedCountrySelect;
     const [filteredOnMainTours, setFilteredOnMainTours] = useState([]);
 
     // Filter tours based on selected filters
@@ -180,7 +180,8 @@ const ToursList = () => {
         const filterToursFromMainPageForm = () => {
             const filteredTours = tours.filter(tour => {
                 if (selectedFilteredOnMainPriceRange) {
-                    const [minPrice, maxPrice] = selectedFilteredOnMainPriceRange.split(',');
+                    const priceRangeString = selectedFilteredOnMainPriceRange.join(', ');
+                    const [minPrice, maxPrice] = priceRangeString.split(',');
                     if (tour.price < parseInt(minPrice) || tour.price > parseInt(maxPrice)) {
                         return false;
                     }

@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import HotelsAdmin from './HotelsAdmin/HotelsAdmin';
 import ToursAdmin from './ToursAdmin/ToursAdmin';
 import './AdminPanel.scss'
+import ReviewsAdmin from './ReviewsAdmin/ReviewsAdmin';
 
 
 const AdminPanel = () => {
@@ -23,12 +24,14 @@ const AdminPanel = () => {
                             <Nav.Link href="/">Go to website home page</Nav.Link>
                             <Nav.Link onClick={() => setShowTables('hotels')}>Hotels Data Base</Nav.Link>
                             <Nav.Link onClick={() => setShowTables('tours')}>Tours Data Base</Nav.Link>
+                            <Nav.Link onClick={() => setShowTables('reviews')}>Reviews Data Base</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
             <HotelsAdmin show={showTables} setShow={setShowTables} />
             <ToursAdmin show={showTables} setShow={setShowTables} />
+            <ReviewsAdmin show={showTables} setShow={setShowTables} />
         </>
     );
 }

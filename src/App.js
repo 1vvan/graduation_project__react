@@ -10,14 +10,25 @@ import { useState } from 'react';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [tourSelectedPriceRange, setTourSelectedPriceRange] = useState('');
+  const [tourSelectedCountrySelect, setTourSelectedCountrySelect] = useState('');
+  const [tourSelectedGuestSelect, setTourSelectedGuestSelect] = useState('');
 
   return (
     <div className='wrapper'>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<HomePage />} />
+          <Route path='/' element={<HomePage
+            setTourSelectedPriceRange={setTourSelectedPriceRange}
+            setTourSelectedCountrySelect={setTourSelectedCountrySelect}
+            setTourSelectedGuestSelect={setTourSelectedGuestSelect}
+          />} />
           <Route path='/hotels' element={<HotelsList />} />
-          <Route path='/tours' element={<ToursList />} />
+          <Route path='/tours' element={<ToursList
+            tourSelectedPriceRange={tourSelectedPriceRange}
+            tourSelectedCountrySelect={tourSelectedCountrySelect}
+            tourSelectedGuestSelect={tourSelectedGuestSelect}
+          />} />
           <Route path='/company' element={<Company />} />
           <Route path='/admin' element={<LoginAdmin isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
           <Route path={isAuthenticated ? '/admin/panel' : '/admin'} element={<AdminPanel />} />

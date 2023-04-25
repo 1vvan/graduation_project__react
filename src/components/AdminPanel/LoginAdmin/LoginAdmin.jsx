@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Button, Container } from 'react-bootstrap';
-import './LoginAdmin.scss'
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import './LoginAdmin.scss'
 
-const LoginAdmin = () => {
+const LoginAdmin = ({setIsAuthenticated, isAuthenticated}) => {
 
     const navigate = useNavigate();
     const [password, setPassword] = useState("");
@@ -21,15 +21,9 @@ const LoginAdmin = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // проверяем, есть ли в массиве dataPasswords введенный пароль
-        const isAdmin = dataPasswords.some(item => item.password === password);
-        
-        if (isAdmin) {
-            localStorage.setItem('isAdmin', 'true');
-            if (localStorage.getItem('isAdmin') === 'true') {
-                navigate("/admin/panel");
-            }
+        setIsAuthenticated(true)
+        if (isAuthenticated === true) {
+            navigate('/admin/panel')
         } else {
             toast.error("Incorrect password");
         }

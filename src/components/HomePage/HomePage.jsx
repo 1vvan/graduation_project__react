@@ -257,7 +257,7 @@ const HomePage = ({setTourSelectedPriceRange, setTourSelectedCountrySelect, setT
                         </div>
                     </div>
                 </div>
-                <div className="main__about-us about-us" data-aos="fade-left" data-aos-duration="1000">
+                <div className="main__about-us about-us">
                     <div className="about-us__container _container">
                         <div className="about-us__content">
                             <h3 className="about-us__title">About Us</h3>

@@ -14,6 +14,7 @@
         @media (max-width: 767px){
             &{
                 width: 100%;
+                margin: 0px 0px 5vw 0px;
             }
         }
         & input{
@@ -46,11 +47,26 @@
             justify-content: space-between;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 4vw;
+            @media (max-width: 767px){
+                &{
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
             .hotel__item {
                 width: 15vw;
                 position: relative;
+                @media (max-width: 767px){
+                    &{
+                        width: 40vw;
+                    }
+                }
                 &_photo {
                     position: relative;
+                    @media (max-width: 767px){
+                        &{
+                            height: 40vw;
+                        }
+                    }
                     & .booking {
                         border-radius: 25px;
                         position: absolute;
@@ -78,6 +94,11 @@
                     & img{
                         width: 100%;
                         object-fit: cover;
+                        @media (max-width: 767px){
+                            &{
+                                height: 100%;
+                            }
+                        }
                     }
                     .hotel__item_mark {
                         position: absolute;
@@ -92,6 +113,12 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        @media (max-width: 767px){
+                            &{
+                                width: 40px;
+                                height: 30px;
+                            }
+                        }
                     }
                 }
                 &_text {

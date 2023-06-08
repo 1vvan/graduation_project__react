@@ -57,6 +57,12 @@
     height: 15vw;
     border-radius: 25px;
     box-shadow: 0px 0px 10px #717171;
+    @media (max-width: 992px){
+        & {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -130,10 +136,18 @@
             justify-content: space-between;
             align-items: center;
             .top-info__list{
+                display: flex;
+                align-items: center;
+                @media (max-width: 992px){
+                    width: 90%;
+                    display: flex;
+                    justify-content: space-between;
+                }
                 @media (max-width: 767px) {
                     & {
                         display: flex;
                         flex-direction: column;
+                        justify-content: start;
                         align-items: flex-start;
                         gap: 5vw;
                         width: 100%;
@@ -162,8 +176,14 @@
                     & .top-info__title{
                         margin: 0px 0px 18px 0px;
                     }
+                    @media (max-width: 992px){
+                        &{
+                            width: 50vw;
+                        }
+                    }
                 }
-                width: 17vw;
+                min-width: 10vw;
+                max-width: 20vw;
                 height: 100%;
                 display: flex;
                 align-items: center;
@@ -175,15 +195,20 @@
                 }
                 @media (max-width: 992px){
                     &{
-                       padding: 0px 5px 0px 10px; 
+                       padding: 0px 5px 0px 10px;
+                        &.price-slider{
+                            max-width: 50vw;
+                        }
                     }
                 }
                 @media (max-width: 767px){
                     &{
+                        max-width: 100%;
                         width: 100%;
                     }
                     &.price-slider{
                         width: 95%;
+                        max-width: 95%;
                     }
                 }
                 .top-info__content {
@@ -363,6 +388,20 @@
                     align-items: center;
                     justify-content: center;
                 }
+                @media (max-width: 992px){
+                    & {
+                        height: 30vw;
+                    }
+                    & .card-image {
+                        width: 100%;
+                        height: 100%;
+                    }
+                    & .hotels__item_mark{
+                        width: 8vw;
+                        height: 8vw;
+                        font-size: 4vw;
+                    }
+                }
             }
 
             &_text {
@@ -371,26 +410,35 @@
 
             &_title {
                 font-weight: 500;
-                font-size: 16px;
+                font-size: 1vw;
                 line-height: 150%;
                 color: #161414;
                 margin: 8px 0px 0px 0px;
             }
 
             &_subtitle {
-                font-size: 13px;
+                font-size: 0.9vw;
                 line-height: 150%;
                 color: #979797;
             }
 
             &_location {
                 display: flex;
+                align-items: center;
                 gap: 5px;
                 width: 70%;
 
                 & img {
                     width: 24px;
                     height: 24px;
+                }
+            }
+            @media (max-width: 992px){
+                &_title{
+                    font-size: 3.3vw;
+                }
+                &_subtitle{
+                    font-size: 3vw;
                 }
             }
         }
@@ -422,6 +470,8 @@
         margin: 64px 0px 0px 0px;
         @media (max-width: 992px) {
             & {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
                 margin: 24px 0px 0px 0px;
                 justify-content: center;
             }
@@ -508,6 +558,15 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        @media (max-width: 992px){
+                            &{
+                                top: 1vw;
+                                right: 1vw;
+                                width: 20vw;
+                                height: 6vw;
+                                font-size: 3.5vw;
+                            }
+                        }
                     }
                 }
 
@@ -546,6 +605,18 @@
                             width: 24px;
                             height: 24px;
                         }
+                    }
+                }
+                @media (max-width: 992px){
+                    width: 100%;
+                    &_photo{
+                        height: 30vw;
+                    }
+                    &_title{
+                        font-size: 3vw;
+                    }
+                    &_subtitle{
+                        font-size: 2.7vw;
                     }
                 }
             }
@@ -642,7 +713,7 @@
         .carousel-item .active{
             width: 100%;
             height: 20vw;
-            background: url('../../assets/images/reviews_img.jpg') 0 -100px/cover no-repeat;
+            background: url('../../assets/images/reviews_img.jpg') 0 0/cover no-repeat;
             .carousel-caption{
                 padding: 4vw 0px 3vw 0px;
             }
@@ -659,6 +730,18 @@
                 & img{
                     width: 24px;
                     height: 24px;
+                }
+            }
+            @media (max-width: 992px){
+                &{
+                    height: 45vw;
+                }
+                .reviews__slider_author{
+                    font-size: 6vw;
+                }
+                .reviews__slider_message{
+                    font-size: 3vw;
+                    line-height: 3.5vw;
                 }
             }
         }

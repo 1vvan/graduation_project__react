@@ -16,7 +16,7 @@ const LoginAdmin = ({setIsAuthenticated, isAuthenticated}) => {
             .then(response => response.json())
             .then(data => setDataPasswords(data))
             .catch(error => console.error(error));
-    }, [dataPasswords]);
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -30,6 +30,8 @@ const LoginAdmin = ({setIsAuthenticated, isAuthenticated}) => {
     };
 
 
+
+
     return (
         <>
             <ToastContainer
@@ -39,12 +41,14 @@ const LoginAdmin = ({setIsAuthenticated, isAuthenticated}) => {
                 <Form className='form' onSubmit={handleSubmit}>
                     <Form.Label>Enter password to get access the panel</Form.Label>
                     <Form.Group className="mb-3">
+                        <input type="text" id="username" autoComplete="username" style={{ display: 'none' }} />
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type="password"
                             placeholder="Password"
                             id="password"
                             value={password}
+                            autoComplete="new-password"
                             onChange={(e) => setPassword(e.target.value)}/>
                     </Form.Group>
                     <Button variant="primary" type="submit" style={{width: '100%'}}>

@@ -20,9 +20,10 @@ const LoginAdmin = ({setIsAuthenticated, isAuthenticated}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setIsAuthenticated(true)
-        if (isAuthenticated === true) {
-            navigate('/admin/panel')
+        const isPasswordCorrect = dataPasswords.some(item => item.password === password);
+        if (isPasswordCorrect) {
+            setIsAuthenticated(true);
+            navigate('/admin/panel');
         } else {
             toast.error("Incorrect password");
         }
